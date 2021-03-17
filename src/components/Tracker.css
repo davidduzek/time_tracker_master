@@ -1,0 +1,199 @@
+.tracker {
+  flex: 1;
+  background-color: #b8bee0;
+}
+
+.container {
+  padding: 20px;
+}
+
+.tracker__top {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 7px;
+  padding: 4px 7px;
+}
+
+.tracker__left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.tracker__input {
+  height: 23px;
+  font-size: 17px;
+  width: 210px;
+  margin-right: 35px;
+  border: none;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  transition: width 1s ease-in-out;
+}
+
+.tracker__input:focus,
+.tracker__input:valid {
+  outline: none;
+  width: 100%;
+}
+
+.tracker__right {
+  display: flex;
+  justify-content: flex-end;
+  width: 350px;
+}
+
+.tracker__projectInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  margin: 0 2px;
+}
+
+.tracker__addProject {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #3f51b5;
+  font-weight: 700;
+  font-size: 14px;
+  height: 26px;
+  border-bottom: 1px solid #3f51b5;
+}
+
+.tracker__addProject:hover {
+  color: #6874b8;
+  border-bottom: 1px solid#6874b8;
+}
+
+.tracker__addProject:focus {
+  outline: none;
+}
+
+.tracker__time {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.tracker__taskButton {
+  color: #fff;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  width: 80px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+.tracker__taskButton:focus {
+  outline: none;
+}
+
+.tracker__startButton {
+  background-color: #3f51b5;
+}
+
+.tracker__startButton:hover {
+  background-color: #5161bb;
+}
+
+.tracker__endButton {
+  background-color: #ec3030;
+}
+
+.tracker__endButton:hover {
+  background-color: #ee4242;
+}
+
+.tracker__projectSettings {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tracker__projectSettings:hover {
+  cursor: pointer;
+}
+
+.tracker__week {
+  margin-top: 30px;
+}
+
+.week__top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.week__date {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.week__totalHours {
+  color: #5d5d5d;
+}
+
+.timeTotal {
+  color: #000;
+  font-weight: 500;
+  font-size: 17px;
+  margin-left: 5px;
+}
+
+.tracker__day {
+  color: #5d5d5d;
+  margin-bottom: 20px;
+}
+
+.day__top {
+  display: flex;
+  justify-content: space-between;
+  background-color: #c2c2c2;
+  padding: 10px;
+  border: 1px solid rgb(141, 141, 141);
+}
+
+.day__date {
+}
+
+.day__tasks {
+  background-color: #fff;
+}
+.day__task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(71, 71, 71);
+  padding: 10px;
+}
+
+.day__taskName {
+  color: #000;
+}
+
+.taskName {
+  margin-right: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.taskProject {
+  margin-right: 10px;
+  font-size: 15px;
+  color: rgb(228, 153, 14);
+}
+
+.day__taskInfo {
+  display: flex;
+  align-items: center;
+}
+
+.day__taskInfo > * {
+  margin-left: 20px;
+}

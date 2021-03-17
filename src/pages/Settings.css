@@ -1,0 +1,169 @@
+.settings {
+  display: flex;
+  background-color: #b8bee0;
+}
+
+.settings__layout {
+  flex: 1;
+}
+
+.settings__title {
+  margin: 20px 25px;
+}
+
+.settings__container {
+  margin: 15px;
+  padding: 25px 35px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.settings__container > hr {
+  margin: 20px -10px;
+}
+
+.settings__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 5px;
+}
+
+.user__info {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.user__photo {
+  object-fit: contain;
+  max-width: 120px;
+  border-radius: 20px;
+  background-color: grey;
+  transition: 0.25s ease-in-out;
+}
+
+.user__photo:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.user__details {
+  margin-left: 35px;
+  margin-bottom: 12px;
+}
+
+.user__name {
+  font-size: 34px;
+  margin-bottom: -5px;
+}
+
+.user__name > .MuiSvgIcon-root {
+  margin: 0 5px;
+  transition: 0.2s ease-in-out;
+}
+
+.user__name > .MuiSvgIcon-root:hover {
+  cursor: pointer;
+  background-color: #6a7ef0;
+  border-radius: 30px;
+  padding: 5px;
+  margin-bottom: -4px;
+  margin-left: 0px;
+}
+
+.user__mail {
+  font-size: 18px;
+  color: #585858;
+  padding-left: 1px;
+}
+
+.logOut {
+  width: 120px;
+  height: 45px;
+  border-radius: 20px;
+  border: none;
+  background-color: #5970f0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  margin-bottom: 18px;
+}
+
+.logOut:hover {
+  background-color: #3f51b5;
+}
+
+.user__changes {
+  padding: 10px 0;
+}
+
+.user__changes > hr {
+  margin: 25px 0;
+}
+
+.change__email {
+  padding-top: 10px;
+}
+
+h3 {
+  color: #2c2c2c;
+}
+
+.change__form {
+  padding: 10px 0;
+}
+
+.change__form > input {
+  margin: 4px 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: #cecece;
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+  max-width: 300px;
+}
+
+.change__form > button {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  max-width: 100px;
+  height: 35px;
+  background-color: #5068f1;
+  color: #fff;
+  border-radius: 7px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.change__form > button:hover {
+  cursor: pointer;
+  background-color: #425beb;
+}
+
+.change__notif {
+  display: flex;
+  flex-direction: column;
+}
+
+.notif__choice {
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+.notif__choice > input {
+  margin-right: 10px;
+  size: 6px;
+  height: 16px;
+  width: 16px;
+}
+
+.notif__choice > label {
+  padding-bottom: 1px;
+}
