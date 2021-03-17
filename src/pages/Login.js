@@ -50,7 +50,6 @@ function Login() {
             <label htmlFor="email">Email Address</label>
             <input type="text" 
               className="form__input"
-              placeholder="Username" 
               onChange={handleUsernameChange}
               value={username} 
             />
@@ -58,7 +57,6 @@ function Login() {
             <input
               className="form__input"
               type="password"
-              placeholder="Password"
               onChange={handlePasswordChange}
               value={password}
             />
