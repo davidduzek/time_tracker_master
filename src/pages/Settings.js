@@ -1,7 +1,8 @@
 import React from "react";
-import { logout } from "../auth"
 import { useHistory } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import {authFetch, logout} from "../auth"
+import { useEffect, useState } from "react";
 
 import "./Settings.css";
 
@@ -9,6 +10,25 @@ import CreateIcon from "@material-ui/icons/Create";
 
 function Settings() {
   const history = useHistory();
+  const [fullname, setFullname] = useState('')
+  const [username, setUsername] = useState('')
+
+  useEffect(() => {
+    authFetch("/api/settings").then(response => {
+      if (response.status === 401){
+        setFullname("Sorry you aren't authorized!")
+        setUsername("Sorry you aren't authorized!")
+        return null
+      }
+      return response.json()
+    }).then(response => {
+      if (response && response.fullname){
+        setFullname(response.fullname)
+        setUsername(response.username)
+      }
+    })
+  }, [])
+
 
   const logOut = (e) => {
     logout()
@@ -33,9 +53,9 @@ function Settings() {
               />
               <div className="user__details">
                 <h2 className="user__name">
-                  Miroslav Sykora <CreateIcon />
+                  {fullname} <CreateIcon />
                 </h2>
-                <span className="user__mail">some@mail.com</span>
+                <span className="user__mail">{username}</span>
               </div>
             </div>
             <button className="logOut" onClick={logOut}>

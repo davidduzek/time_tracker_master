@@ -21,9 +21,10 @@ class User(db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     is_active = db.Column(db.Boolean, default=True, server_default='true')
+    fullname = db.Column(db.String(20), unique=False, nullable=False)
 
     def __str__(self):
-        return f'{self.username} {self.password}'
+        return f'{self.username} {self.password} {self.fullname}'
 
     @property
     def rolenames(self):
@@ -55,7 +56,7 @@ guard.init_app(app, User)
 def register():
     request_data = json.loads(request.data)
     hashed_password = bcrypt.generate_password_hash(password=request_data['password']).decode('utf-8')
-    user = User(username=request_data['username'], password=hashed_password)
+    user = User(username=request_data['username'], password=hashed_password, fullname=request_data['fullname'])
     db.session.add(user)
     db.session.commit()
     return {'201': 'Účet bol zaregistrovaný'}
@@ -69,7 +70,6 @@ def login():
         user = guard.authenticate(username=request_data['username'], password=request_data['password'])
         ret = {'access_token': guard.encode_jwt_token(user)}
         return ret, 200
-        return {'201': 'prihlaseny'}
     else:
         return {'201': 'neprihlaseny'}
 
@@ -85,8 +85,12 @@ def refresh():
 @app.route('/api/home')
 @flask_praetorian.auth_required
 def protected():
-    return ()
+    return {'201': 'prihlaseny'}
 
+@app.route('/api/settings')
+@flask_praetorian.auth_required
+def fullnameSettings():
+    return {"fullname": f'{flask_praetorian.current_user().fullname}'}; {"username": f'{flask_praetorian.current_user().username}'}
 
 
 if __name__ == '__main__':

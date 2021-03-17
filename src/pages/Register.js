@@ -5,6 +5,7 @@ import "./Register.css";
 export const Register = ()=> {
   const [addusername, setUsername] = useState('')
   const [addpassword, setPassword] = useState('')
+  const [addfullname, setFullname] = useState('')
   
   
   const onSubmitClick = (e)=>{
@@ -14,7 +15,8 @@ export const Register = ()=> {
       method: 'POST',
       body:JSON.stringify({
           username:addusername,
-          password:addpassword
+          password:addpassword,
+          fullname:addfullname
       }),
       headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -24,11 +26,16 @@ export const Register = ()=> {
             console.log(message)
             setUsername('')
             setPassword('')
+            setFullname('')
           })
   }
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value)
+  }
+
+  const handleFullnameChange = (e) => {
+    setFullname(e.target.value)
   }
 
   const handlePasswordChange = (e) => {
@@ -44,11 +51,17 @@ export const Register = ()=> {
             <p>The Account is Ready for You.</p>
           </div>
             <form method="" action="#">
-            <label htmlFor="name">UserName</label>
+            <label htmlFor="name">Full Name</label>
             <input 
               type="text"
               className="form__input"
-              placeholder="Username" 
+              onChange={handleFullnameChange}
+              required value={addfullname}
+            />
+            <label htmlFor="email">Email Address</label>
+            <input 
+              type="text"
+              className="form__input"
               onChange={handleUsernameChange}
               required value={addusername}
             />
@@ -56,7 +69,6 @@ export const Register = ()=> {
             <input
               className="form__input"
               type="password"
-              placeholder="Password"
               onChange={handlePasswordChange}
               required value={addpassword}
             />
