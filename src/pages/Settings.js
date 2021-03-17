@@ -17,17 +17,27 @@ function Settings() {
     authFetch("/api/settings").then(response => {
       if (response.status === 401){
         setFullname("Sorry you aren't authorized!")
-        setUsername("Sorry you aren't authorized!")
         return null
       }
       return response.json()
     }).then(response => {
       if (response && response.fullname){
         setFullname(response.fullname)
-        setUsername(response.username)
       }
     })
   }, [])
+
+  authFetch("/api/username").then(response => {
+      if (response.status === 401){
+        setUsername("Sorry you aren't authorized!")
+        return null
+      }
+      return response.json()
+    }).then(response => {
+      if (response && response.username){
+        setUsername(response.username)
+      }
+    })
 
 
   const logOut = (e) => {

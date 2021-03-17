@@ -90,7 +90,12 @@ def protected():
 @app.route('/api/settings')
 @flask_praetorian.auth_required
 def fullnameSettings():
-    return {"fullname": f'{flask_praetorian.current_user().fullname}'}; {"username": f'{flask_praetorian.current_user().username}'}
+    return {"fullname": f'{flask_praetorian.current_user().fullname}'}
+
+@app.route('/api/username')
+@flask_praetorian.auth_required
+def usernameSettings():
+    return {"username": f'{flask_praetorian.current_user().username}'}
 
 
 if __name__ == '__main__':
