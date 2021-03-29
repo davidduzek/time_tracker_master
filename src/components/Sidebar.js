@@ -44,7 +44,7 @@ function Sidebar() {
             <span>Projects</span>
           </div>
         </Link>
-        <Link to="/teams" className="sidebar__links">
+        <Link to="/team" className="sidebar__links">
           <div className="link__option">
             <GroupIcon />
             <span>Team</span>

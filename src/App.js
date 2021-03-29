@@ -19,9 +19,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
   return <Route {...rest} render={(props) => (
     logged
-      ? (<Component {...props} />)
-      : (<Redirect to={{ pathname: '/login', state: { from: props.location } }} />)
-        (console.log("odhlaseny"))
+      ? <Component {...props} />
+      : <Redirect to='/login' />
   )} />
 }
 
@@ -36,11 +35,8 @@ export default function App() {
           <Route exact path="/login">
             <Login />
           </Route>
-           <Route exact path="/settings">
-            <Settings />
-          </Route>
-          <PrivateRoute exact path="/home" component={Home} />
-          <Home />
+           <PrivateRoute exact path="/settings" component={Settings} />
+           <PrivateRoute path="/" component={Home} />
         </Switch>
       </div>
     </Router>

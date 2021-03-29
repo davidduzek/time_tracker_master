@@ -97,6 +97,16 @@ def fullnameSettings():
 def usernameSettings():
     return {"username": f'{flask_praetorian.current_user().username}'}
 
+@app.route('/api/updateEmail', methods=['GET', 'POST'])
+@flask_praetorian.auth_required
+def updateEmail():
+    email=flask_praetorian.current_user().username
+    user = User.query.filter_by(username=email).first()
+    request_data = json.loads(request.data)
 
+    if user and bcrypt.check_password_hash(user.password, password=request_data['password']):
+        newemail = request_data['updateEmail']
+        user.username=(newemail)
+        db.session.commit()
 if __name__ == '__main__':
     app.run(debug=True)

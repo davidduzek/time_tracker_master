@@ -22,10 +22,11 @@ function Login() {
       .then(token => {
         if (token.access_token){
           login(token)
-          console.log(token)          
+          console.log(token)
         }
         else {
-          console.log("Please type in correct username/password")
+          setPassword("")
+          alert("Please type in correct username/password")
         }
       })
   }
@@ -46,12 +47,14 @@ function Login() {
             <h2>Login Now</h2>
             <p>The Account is Ready for You.</p>
           </div>
-            {!logged? <form method="" action="#">
+            {!logged? <form onSubmit={onSubmitClick}>
             <label htmlFor="email">Email Address</label>
-            <input type="text" 
+            <input type="email" 
               className="form__input"
               onChange={handleUsernameChange}
-              value={username} 
+              value={username}
+              required
+              name="email"
             />
             <label htmlFor="password">Password</label>
             <input
@@ -59,9 +62,10 @@ function Login() {
               type="password"
               onChange={handlePasswordChange}
               value={password}
+              required
             />
 
-            <button className="login__button" onClick={onSubmitClick} type="submit">
+            <button className="login__button" type="submit">
               Login
             </button>
             <Link to="/register" className="login__link">

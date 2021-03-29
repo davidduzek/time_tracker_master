@@ -12,6 +12,20 @@ function Settings() {
   const history = useHistory();
   const [fullname, setFullname] = useState('')
   const [username, setUsername] = useState('')
+  const [updateEmail, setUpdateEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const onSubmitClick = (e)=>{
+    e.preventDefault()
+    authFetch('/api/updateEmail', {
+      method: 'POST',
+      body:JSON.stringify({
+          updateEmail:updateEmail,
+          password:password
+      }),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+  }
 
   useEffect(() => {
     authFetch("/api/settings").then(response => {
@@ -39,6 +53,12 @@ function Settings() {
       }
     })
 
+  const handleEmailChange = (e) => {
+    setUpdateEmail(e.target.value)
+  }
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value)
+  }
 
   const logOut = (e) => {
     logout()
@@ -78,20 +98,22 @@ function Settings() {
             <div className="user__changes">
               <div className="change__email">
                 <h3>Change User Email</h3>
-                <form className="change__form">
+                <form className="change__form" onSubmit={onSubmitClick}>
                   <input
                     name="email"
                     type="email"
-                    required
+                    required value={updateEmail}
+                    onChange={handleEmailChange}
                     placeholder="New Email Adress"
                   />
                   <input
                     name="password"
                     type="password"
-                    required
+                    required value={password}
+                    onChange={handlePasswordChange}
                     placeholder="Password"
                   />
-                  <button>Save it</button>
+                  <button type="submit">Save it</button>
                 </form>
                 <p>
                   Here, You can change your old email for some new, without any

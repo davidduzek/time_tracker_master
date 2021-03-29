@@ -50,17 +50,19 @@ export const Register = ()=> {
             <h2>Register</h2>
             <p>The Account is Ready for You.</p>
           </div>
-            <form method="" action="#">
+            <form onSubmit={onSubmitClick}>
             <label htmlFor="name">Full Name</label>
             <input 
               type="text"
               className="form__input"
               onChange={handleFullnameChange}
               required value={addfullname}
+              name="name"
             />
             <label htmlFor="email">Email Address</label>
             <input 
-              type="text"
+              type="email"
+              name="email"
               className="form__input"
               onChange={handleUsernameChange}
               required value={addusername}
@@ -71,9 +73,11 @@ export const Register = ()=> {
               type="password"
               onChange={handlePasswordChange}
               required value={addpassword}
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,}"
+              title="Must contain at least one  number and one uppercase and lowercase letter, and at least 7 or more characters"
             />
 
-            <button className="register__button" onClick={onSubmitClick} type="submit">
+            <button className="register__button" type="submit">
               Register
             </button>
             <Link to="/login" className="register__link">
