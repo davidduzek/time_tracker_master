@@ -1,0 +1,11 @@
+.chatRoom {
+  padding: 15px 0;
+  padding-left: 25px;
+  border-bottom: 1px solid #7e7e7e;
+}
+
+.chatRoom:hover {
+  cursor: pointer;
+  background-color: #e6e6e6;
+  cursor: pointer;
+}

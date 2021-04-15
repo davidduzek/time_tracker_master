@@ -3,26 +3,33 @@ import {
   BrowserRouter as Router,
   Switch,
   Redirect,
-  Route
+  Route,
 } from "react-router-dom";
 
 import "./App.css";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import {Register} from "./pages/Register";
-import {useAuth} from "./auth"
+import { Register } from "./pages/Register";
+import { useAuth } from "./auth";
 import Settings from "./pages/Settings";
+import Team from "./pages/Team";
+import Projects from "./pages/Projects";
+import Error404 from "./pages/Error404";
+import Soon from "./pages/Soon";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const [logged] = useAuth();
 
-  return <Route {...rest} render={(props) => (
-    logged
-      ? <Component {...props} />
-      : <Redirect to='/login' />
-  )} />
-}
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        logged ? <Component {...props} /> : <Redirect to="/login" />
+      }
+    />
+  );
+};
 
 export default function App() {
   return (
@@ -31,12 +38,18 @@ export default function App() {
         <Switch>
           <Route exact path="/register">
             <Register />
-            </Route>
+          </Route>
           <Route exact path="/login">
             <Login />
           </Route>
-           <PrivateRoute exact path="/settings" component={Settings} />
-           <PrivateRoute path="/" component={Home} />
+          <PrivateRoute exact path="/tracker" component={Home} />
+          <PrivateRoute exact path="/calendar" component={Soon} />
+          <PrivateRoute exact path="/reports" component={Soon} />
+          <PrivateRoute exact path="/projects" component={Projects} />
+          <PrivateRoute exact path="/team" component={Team} />
+          <PrivateRoute exact path="/settings" component={Settings} />
+          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute path="/" component={Error404} />
         </Switch>
       </div>
     </Router>

@@ -1,0 +1,39 @@
+.projects {
+  display: flex;
+  background-color: #b8bee0;
+}
+
+.projects__layout {
+  flex: 1;
+}
+
+.projects__title {
+  margin: 30px 25px;
+}
+
+.projects__container {
+  margin: 15px;
+  height: calc(100vh - 130px);
+  border-radius: 20px;
+  background-color: #fff;
+  display: flex;
+}
+
+.projects__chatRooms {
+  display: flex;
+  flex-direction: column;
+  flex: 0.3;
+  min-width: 190px;
+  max-width: 240px;
+  border-right: 1px solid #363636;
+}
+
+.chatRooms__title {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #363636;
+}
+
+.projects__chat {
+  flex: 1;
+}

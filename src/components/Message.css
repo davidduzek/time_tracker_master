@@ -1,0 +1,22 @@
+.message {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  max-width: 80%;
+}
+
+.message img {
+  height: 50px;
+  border-radius: 10px;
+}
+
+.message__info {
+  padding-left: 10px;
+}
+
+.message__info h4 span {
+  color: gray;
+  font-weight: 300;
+  margin-left: 4px;
+  font-size: 10px;
+}
