@@ -8,38 +8,22 @@ import TrackerDay from "./TrackerDay";
 import { Form } from '../components/Form/form';
 
 function Tracker() {
-  const [taskName, setTaskName] = useState();
-  const [timer, setTimer] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const countRef = useRef(null);
-
   const [todo, setTodo] = useState([])
   const [addTodo,setAddTodo] = useState('')
   useEffect(()=>{
-      fetch('/api').then(response=>{
-          if(response.ok){
-              return response.json()
-          }
-      }).then(data=>setTodo(data))
-  },[])
+        fetch('/api').then(response=>{
+            if(response.ok){
+                return response.json()
+            }
+        }).then(data=>setTodo(data))
+    },[])
 
   const handleFormChange = (inputvalue) =>{
         setAddTodo(inputvalue)
     }
 
-  const handleStart = () => {
-    setIsActive(true);
-    countRef.current = setInterval(() => {
-      setTimer((timer) => timer + 1);
-    }, 1000);
-  };
-
-  const handleEnd = () => {
-    clearInterval(countRef.current);
-    setIsActive(false);
-    setTimer(0);
-
-    fetch('/api/create', {
+  const handleFormSubmit = () => {
+        fetch('/api/create', {
             method: 'POST',
             body: JSON.stringify({
                 content:addTodo
@@ -53,16 +37,35 @@ function Tracker() {
             setAddTodo('')
             getLatestTodos()
           })
-     setTaskName("");
-  };
+    }
 
-  const getLatestTodos = () =>{
+   const getLatestTodos = () =>{
         fetch ('/api').then(response => {
             if(response.ok){
                 return response.json()
             }
         }).then(data=>setTodo(data))
     }
+
+  const [timer, setTimer] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  const countRef = useRef(null);
+
+  const handleStart = () => {
+    setIsActive(true);
+    countRef.current = setInterval(() => {
+      setTimer((timer) => timer + 1);
+    }, 1000);
+  };
+
+  const handleEnd = () => {
+    clearInterval(countRef.current);
+    setIsActive(false);
+    setTimer(0);
+  };
+  
+  
+
 
   const formatTime = () => {
     const getSeconds = `0${timer % 60}`.slice(-2);
@@ -82,11 +85,9 @@ function Tracker() {
               className="tracker__input"
               userInput={addTodo}
               onFormChange={handleFormChange}
-              onFormSubmit={handleEnd}
+              onFormSubmit={handleFormSubmit}
               type="text"
               placeholder="What are you working on?"
-              value={taskName}
-              onChange={(e) => setTaskName(e.target.value)}
               required
             />
           </div>
@@ -133,7 +134,7 @@ function Tracker() {
               Week Hours: <span className="timeTotal">36:00</span>
             </div>
           </div>
-          <TrackerDay />
+          <TrackerDay todo={todo} />
         </div>
       </div>
     </div>

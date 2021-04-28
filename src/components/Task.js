@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from "react";
-
 import "./Task.css";
-import { Card } from '../components/Card/card';
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import {useHistory} from 'react-router-dom';
 
-function Task(props) {
-  const [todo, setTodo] = useState([])
-  useEffect(()=>{
-      fetch('/api').then(response=>{
-          if(response.ok){
-              return response.json()
-          }
-      }).then(data=>setTodo(data))
-  },[])
+function Task({id, title}) {
+  const history = useHistory()
+
+    const deleteTodo = () =>{
+        fetch(`/api/${id}`,{
+            method: 'POST',
+            body: JSON.stringify({
+                id:id
+            })
+        }).then(response=>response.json())
+          .then(data=>{
+              console.log(data)
+              history.push('/')
+          })
+    }
+    
 
   const handleRestart = (e) => {
     e.preventDefault();
@@ -21,16 +26,12 @@ function Task(props) {
     //restart
   };
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-
-    //delete
-  };
 
   return (
+    <>
     <div className="day__task">
       <div className="day__taskName">
-        <span className="taskName"><Card listOfTodos={todo}/></span>
+        <span className="taskName">{title}</span>
         {/* <span className="taskName">{props.name}</span> */}
         <span className="taskProject">Amazon</span>
         {/* <span className="taskProject">{props.project}</span> */}
@@ -41,9 +42,10 @@ function Task(props) {
         <span className="timeTotal">4:00</span>
         {/* <span className="timeTotal">{props.time}</span> */}
         <PlayArrowIcon onClick={handleRestart} />
-        <MoreVertIcon onClick={handleDelete} />
+        <MoreVertIcon onClick={deleteTodo} />
       </div>
     </div>
+    </>
   );
 }
 
