@@ -1,0 +1,32 @@
+.member,
+.groups {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(71, 71, 71);
+}
+
+.member div,
+.groups div {
+  padding: 15px;
+}
+
+.member__name,
+.group__name {
+  flex: 0.4;
+  text-align: center;
+}
+
+.member__email,
+.group__people {
+  border-right: 1px solid rgb(71, 71, 71);
+  border-left: 1px solid rgb(71, 71, 71);
+  flex: 0.4;
+  text-align: center;
+}
+
+.member__rights,
+.group__settings {
+  flex: 0.2;
+  text-align: center;
+}

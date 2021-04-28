@@ -1,16 +1,31 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import "./Tracker.css";
 
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import DehazeIcon from "@material-ui/icons/Dehaze";
 import TrackerDay from "./TrackerDay";
+import { Form } from '../components/Form/form';
 
 function Tracker() {
   const [taskName, setTaskName] = useState();
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const countRef = useRef(null);
+
+  const [todo, setTodo] = useState([])
+  const [addTodo,setAddTodo] = useState('')
+  useEffect(()=>{
+      fetch('/api').then(response=>{
+          if(response.ok){
+              return response.json()
+          }
+      }).then(data=>setTodo(data))
+  },[])
+
+  const handleFormChange = (inputvalue) =>{
+        setAddTodo(inputvalue)
+    }
 
   const handleStart = () => {
     setIsActive(true);
@@ -24,8 +39,30 @@ function Tracker() {
     setIsActive(false);
     setTimer(0);
 
-    setTaskName("");
+    fetch('/api/create', {
+            method: 'POST',
+            body: JSON.stringify({
+                content:addTodo
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(response=>response.json())
+          .then(message=> {
+            console.log(message)
+            setAddTodo('')
+            getLatestTodos()
+          })
+     setTaskName("");
   };
+
+  const getLatestTodos = () =>{
+        fetch ('/api').then(response => {
+            if(response.ok){
+                return response.json()
+            }
+        }).then(data=>setTodo(data))
+    }
 
   const formatTime = () => {
     const getSeconds = `0${timer % 60}`.slice(-2);
@@ -41,8 +78,11 @@ function Tracker() {
       <div className="container">
         <div className="tracker__top">
           <div className="tracker__left">
-            <input
+            <Form
               className="tracker__input"
+              userInput={addTodo}
+              onFormChange={handleFormChange}
+              onFormSubmit={handleEnd}
               type="text"
               placeholder="What are you working on?"
               value={taskName}

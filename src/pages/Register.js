@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Register.css";
+import { ReactComponent as RegisterImage } from "../images/undraw_authentication_fsn5.svg";
 
 export const Register = ()=> {
   const [addusername, setUsername] = useState('')
@@ -90,11 +91,7 @@ export const Register = ()=> {
             <h3>Join us today!</h3>
             <p>Where your plans and goals become reality.</p>
           </div>
-
-          <img
-            src="https://scontent.xx.fbcdn.net/v/t1.15752-0/p403x403/148002929_413839449689749_1907044659413814928_n.png?_nc_cat=105&ccb=3&_nc_sid=aee45a&_nc_ohc=6ddF5i5lwnMAX_mU4PE&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&_nc_tp=30&oh=8c94003280c93819a17a0f8f524bd2c8&oe=6049E10B"
-            alt="someimage"
-          />
+          <RegisterImage className="register__image__img" />
         </div>
       </div>
     </div>

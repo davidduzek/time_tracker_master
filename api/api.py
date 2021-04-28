@@ -16,6 +16,19 @@ cors = flask_cors.CORS(app)
 bcrypt = Bcrypt(app)
 guard = flask_praetorian.Praetorian(app)
 
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+
+    def __str__(self):
+        return f'{self.id} {self.content}'
+
+def todo_serializer(todo):
+    return {
+        'id': todo.id,
+        'content': todo.content
+    }
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
@@ -108,5 +121,35 @@ def updateEmail():
         newemail = request_data['updateEmail']
         user.username=(newemail)
         db.session.commit()
+
+
+
+
+@app.route('/api', methods=['GET'])
+def index():
+    todo=Todo.query.all()
+    return jsonify([*map(todo_serializer, Todo.query.all())])
+
+@app.route('/api/create', methods=['POST'])
+def create():
+    request_data = json.loads(request.data)
+    todo = Todo(content=request_data['content'])
+    db.session.add(todo)
+    db.session.commit()
+
+    return {'201': 'todo created'}
+
+@app.route('/api/<int:id>')
+def show(id):
+    return jsonify([*map(todo_serializer, Todo.query.filter_by(id=id))])
+
+@app.route('/api/<int:id>', methods=['POST'])
+def delete(id):
+    request_data = json.loads(request.data)
+    Todo.query.filter_by(id=request_data['id']).delete()
+    db.session.commit()
+    return {'204': 'Deleted'}
+
+
 if __name__ == '__main__':
     app.run(debug=True)

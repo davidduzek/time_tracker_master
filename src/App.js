@@ -17,6 +17,8 @@ import Team from "./pages/Team";
 import Projects from "./pages/Projects";
 import Error404 from "./pages/Error404";
 import Soon from "./pages/Soon";
+import Show from "./pages/Show"
+import TodoPage from "./pages/TodoPage"
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const [logged] = useAuth();
@@ -43,6 +45,8 @@ export default function App() {
             <Login />
           </Route>
           <PrivateRoute exact path="/tracker" component={Home} />
+          <PrivateRoute exact path="/test" component={TodoPage} />
+          <PrivateRoute exact path="/tracker/:id" component={Show} />
           <PrivateRoute exact path="/calendar" component={Soon} />
           <PrivateRoute exact path="/reports" component={Soon} />
           <PrivateRoute exact path="/projects" component={Projects} />

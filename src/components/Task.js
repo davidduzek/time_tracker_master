@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import "./Task.css";
-
+import { Card } from '../components/Card/card';
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 function Task(props) {
+  const [todo, setTodo] = useState([])
+  useEffect(()=>{
+      fetch('/api').then(response=>{
+          if(response.ok){
+              return response.json()
+          }
+      }).then(data=>setTodo(data))
+  },[])
+
   const handleRestart = (e) => {
     e.preventDefault();
 
@@ -21,7 +30,7 @@ function Task(props) {
   return (
     <div className="day__task">
       <div className="day__taskName">
-        <span className="taskName">Emails</span>
+        <span className="taskName"><Card listOfTodos={todo}/></span>
         {/* <span className="taskName">{props.name}</span> */}
         <span className="taskProject">Amazon</span>
         {/* <span className="taskProject">{props.project}</span> */}

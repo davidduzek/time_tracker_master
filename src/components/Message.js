@@ -15,8 +15,8 @@ function Message() {
           <span>Sat, 06 Mar 2021 23:00:47 GMT</span>
         </h4>
         <p>
-          listen here you little faggots, work harder
-          blyataddddddddddddddddddddddd ddddddddddddddd ddddddddddddddd
+          listen here
+          addddddddddddddddddddddd ddddddddddddddd ddddddddddddddd
           ddddddddddddddddddd ddddddddddddddd ddddddddddddddddddddddddddddd
           ddddddddddddddddddddddddddddddddddd ddddddddddddddddddddddddddddd
           ddddddddddddddddddddddddd

@@ -102,9 +102,9 @@ form > label {
   font-size: 32px;
 }
 
-.register__image img {
+.register__image__img {
   object-fit: cover;
   max-width: 100%;
-  max-height: 325px;
-  margin-bottom: 25px;
+  max-height: 350px;
+  margin-bottom: 10px;
 }
